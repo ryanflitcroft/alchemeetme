@@ -11,9 +11,12 @@ describe('App', () => {
       </MemoryRouter>
     );
 
-    await waitFor(() => {
-      const headerImage = screen.getByAltText(/Alchemy Logo/i);
-      expect(headerImage).toBeInTheDocument();
+    const headerImage = screen.getByAltText(/Alchemy Logo/i);
+    expect(headerImage).toBeInTheDocument();
+
+    const header = screen.getByRole('banner');
+    expect(header).toHaveStyle({
+      backgroundColor: 'var(--grey)',
     });
 
     await waitFor(() => {
