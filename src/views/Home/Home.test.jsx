@@ -30,4 +30,9 @@ it('should render the component Profile', async () => {
     const profileMotto = screen.getByLabelText('motto');
     expect(profileMotto.textContent).toEqual('Res Non Verba');
   });
+
+  await waitFor(() => {
+    const profileInterests = screen.getByRole('heading', { name: 'Interests' });
+    expect(profileInterests).toBeInTheDocument();
+  });
 });
