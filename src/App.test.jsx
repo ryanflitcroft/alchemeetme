@@ -11,10 +11,14 @@ describe('App', () => {
       </MemoryRouter>
     );
 
-    const headerImage = screen.getByAltText(/Alchemy Logo/i);
-
-    return waitFor(() => {
+    await waitFor(() => {
+      const headerImage = screen.getByAltText(/Alchemy Logo/i);
       expect(headerImage).toBeInTheDocument();
+    });
+
+    await waitFor(() => {
+      const profileName = screen.getByText('Vonta');
+      expect(profileName).toBeInTheDocument();
     });
   });
 });
