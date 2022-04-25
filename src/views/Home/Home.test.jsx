@@ -1,3 +1,7 @@
+import { render, screen, waitFor } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import userEvent from '@testing-library/user-event';
+import App from '../../App';
 
 const user = {
   id: 1,
@@ -8,8 +12,17 @@ const user = {
   likes: ['React', 'Anime', 'Traveling', 'Living', 'Tower Defense Games', 'Card Games'],
   motto: 'Res Non Verba',
   color: 'crimson',
-}
+};
 
-test('Should render the user profile', () => {
+it('should render the component Profile', async () => {
+  render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  );
 
-})
+  await waitFor(() => {
+    const profileName = screen.getByRole('heading', { name: 'Vonta' });
+    expect(profileName.textContent).toEqual('Vonta');
+  });
+});
