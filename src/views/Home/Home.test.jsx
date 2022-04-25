@@ -25,4 +25,9 @@ it('should render the component Profile', async () => {
     const profileName = screen.getByRole('heading', { name: 'Vonta' });
     expect(profileName.textContent).toEqual('Vonta');
   });
+
+  await waitFor(() => {
+    const profileMotto = screen.getByLabelText('motto');
+    expect(profileMotto.textContent).toEqual('Res Non Verba');
+  });
 });
