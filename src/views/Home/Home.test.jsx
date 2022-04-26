@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import App from '../../App';
+import Home from './Home';
 
 const user = {
   id: 1,
@@ -17,7 +17,7 @@ const user = {
 it('should render the component Profile', async () => {
   render(
     <MemoryRouter>
-      <App />
+      <Home user={user} />
     </MemoryRouter>
   );
 
