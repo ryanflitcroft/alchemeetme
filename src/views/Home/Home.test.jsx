@@ -1,3 +1,7 @@
+import { render, screen, waitFor } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import userEvent from '@testing-library/user-event';
+import Home from './Home';
 
 const user = {
   id: 1,
@@ -8,8 +12,35 @@ const user = {
   likes: ['React', 'Anime', 'Traveling', 'Living', 'Tower Defense Games', 'Card Games'],
   motto: 'Res Non Verba',
   color: 'crimson',
-}
+};
 
-test('Should render the user profile', () => {
+it('should render the component Profile', async () => {
+  render(
+    <MemoryRouter>
+      <Home user={user} />
+    </MemoryRouter>
+  );
 
-})
+  const profileInterests = await screen.findByRole('heading', { name: 'Interests' });
+
+  const profileName = await screen.findByRole('heading', { name: 'Vonta' });
+  expect(profileName.textContent).toEqual('Vonta');
+
+  const profileMotto = await screen.findByLabelText('motto');
+  expect(profileMotto.textContent).toEqual('Res Non Verba');
+
+  const profileAvatar = await screen.findByAltText('avatar');
+  expect(profileAvatar).toHaveAttribute(
+    'src',
+    'https://thumbs.gfycat.com/NiceRequiredGrunion-size_restricted.gif'
+  );
+
+  const headerImage = await screen.findByAltText('header');
+  expect(headerImage).toHaveAttribute(
+    'src',
+    'https://static.wikia.nocookie.net/naruto/images/5/50/Team_Kakashi.png'
+  );
+
+  const likesList = await screen.findByRole('list');
+  expect(likesList.children.length).toEqual(user.likes.length);
+});
