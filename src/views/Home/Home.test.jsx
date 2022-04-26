@@ -40,4 +40,7 @@ it('should render the component Profile', async () => {
     'src',
     'https://static.wikia.nocookie.net/naruto/images/5/50/Team_Kakashi.png'
   );
+
+  const likesList = await screen.findByRole('list');
+  expect(likesList.children.length).toEqual(user.likes.length);
 });
