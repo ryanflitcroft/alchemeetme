@@ -11,8 +11,7 @@ describe('App', () => {
       </MemoryRouter>
     );
 
-    const headerImage = screen.getByAltText(/Alchemy Logo/i);
-    expect(headerImage).toBeInTheDocument();
+    const headerImage = await screen.findByAltText(/Alchemy Logo/i);
 
     const header = screen.getByRole('banner');
     expect(header).toHaveStyle({
@@ -20,6 +19,5 @@ describe('App', () => {
     });
 
     const profileName = await screen.findByText('Vonta');
-    expect(profileName).toBeInTheDocument();
   });
 });
