@@ -21,18 +21,12 @@ it('should render the component Profile', async () => {
     </MemoryRouter>
   );
 
-  await waitFor(() => {
-    const profileName = screen.getByRole('heading', { name: 'Vonta' });
-    expect(profileName.textContent).toEqual('Vonta');
-  });
+  const profileName = await screen.findByRole('heading', { name: 'Vonta' });
+  expect(profileName.textContent).toEqual('Vonta');
 
-  await waitFor(() => {
-    const profileMotto = screen.getByLabelText('motto');
-    expect(profileMotto.textContent).toEqual('Res Non Verba');
-  });
+  const profileMotto = screen.getByLabelText('motto');
+  expect(profileMotto.textContent).toEqual('Res Non Verba');
 
-  await waitFor(() => {
-    const profileInterests = screen.getByRole('heading', { name: 'Interests' });
-    expect(profileInterests).toBeInTheDocument();
-  });
+  const profileInterests = await screen.findByRole('heading', { name: 'Interests' });
+  expect(profileInterests).toBeInTheDocument();
 });

@@ -19,9 +19,7 @@ describe('App', () => {
       backgroundColor: 'var(--grey)',
     });
 
-    await waitFor(() => {
-      const profileName = screen.getByText('Vonta');
-      expect(profileName).toBeInTheDocument();
-    });
+    const profileName = await screen.findByText('Vonta');
+    expect(profileName).toBeInTheDocument();
   });
 });
